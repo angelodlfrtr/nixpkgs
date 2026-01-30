@@ -814,6 +814,8 @@ self: super: with self; {
 
   apeye-core = callPackage ../development/python-modules/apeye-core { };
 
+  apiflask = callPackage ../development/python-modules/apiflask { };
+
   apipkg = callPackage ../development/python-modules/apipkg { };
 
   apischema = callPackage ../development/python-modules/apischema { };
@@ -9555,6 +9557,8 @@ self: super: with self; {
 
   memory-tempfile = callPackage ../development/python-modules/memory-tempfile { };
 
+  memray = callPackage ../development/python-modules/memray { };
+
   meraki = callPackage ../development/python-modules/meraki { };
 
   mercadopago = callPackage ../development/python-modules/mercadopago { };
@@ -17332,6 +17336,8 @@ self: super: with self; {
   sigstore-rekor-types = callPackage ../development/python-modules/sigstore-rekor-types { };
 
   sigtools = callPackage ../development/python-modules/sigtools { };
+
+  silver-platter = callPackage ../development/python-modules/silver-platter { };
 
   simanneal = callPackage ../development/python-modules/simanneal { };
 

@@ -13,18 +13,18 @@
   hyprgraphics,
   cairo,
   nix-update-script,
-  testers,
+  versionCheckHook,
 }:
 
 gcc15Stdenv.mkDerivation (finalAttrs: {
   pname = "hyprshutdown";
-  version = "0-unstable-2026-01-11";
+  version = "0.1.0";
 
   src = fetchFromGitHub {
     owner = "hyprwm";
     repo = "hyprshutdown";
-    rev = "0c9cec7809a715c5c9a99a585db0b596bfb96a59";
-    hash = "sha256-JMpLic41Jw6kDXXMtj6tEYUMu3QQ0Sg/M8EBxmAwapU=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-dp5lyZzKsjdqJLfwr0S4ILets8eu1kLfBB2y/LxspsU=";
   };
 
   nativeBuildInputs = [
@@ -43,20 +43,12 @@ gcc15Stdenv.mkDerivation (finalAttrs: {
     (glaze.override { enableSSL = false; })
   ];
 
+  doInstallCheck = true;
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "--help";
+
   passthru = {
-    updateScript = nix-update-script {
-      # TODO: remove when stable release available
-      extraArgs = [ "--version=branch" ];
-    };
-    tests = {
-      help = testers.runCommand {
-        name = "${finalAttrs.pname}-help-test";
-        nativeBuildInputs = [ finalAttrs.finalPackage ];
-        script = ''
-          '${finalAttrs.meta.mainProgram}' --help && touch "$out"
-        '';
-      };
-    };
+    updateScript = nix-update-script { };
   };
 
   meta = {

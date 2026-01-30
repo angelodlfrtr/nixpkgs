@@ -1345,10 +1345,6 @@ with pkgs;
 
   ### APPLICATIONS/TERMINAL-EMULATORS
 
-  kitty = callPackage ../by-name/ki/kitty/package.nix {
-    inherit (darwin) autoSignDarwinBinariesHook;
-  };
-
   mlterm-wayland = mlterm.override {
     enableX11 = false;
   };
@@ -1796,10 +1792,6 @@ with pkgs;
 
   easyocr = with python3.pkgs; toPythonApplication easyocr;
 
-  element-web = callPackage ../by-name/el/element-web/package.nix {
-    conf = config.element-web.conf or { };
-  };
-
   espanso-wayland = espanso.override {
     x11Support = false;
     waylandSupport = !stdenv.hostPlatform.isDarwin;
@@ -2151,8 +2143,6 @@ with pkgs;
   collectd-data = callPackage ../tools/system/collectd/data.nix { };
 
   unify = with python3Packages; toPythonApplication unify;
-
-  usb-modeswitch-data = callPackage ../by-name/us/usb-modeswitch/data.nix { };
 
   persistent-evdev = python3Packages.callPackage ../servers/persistent-evdev { };
 
@@ -6272,10 +6262,6 @@ with pkgs;
     replay-node-cli
     ;
 
-  rescript-language-server = callPackage ../by-name/re/rescript-language-server/package.nix {
-    rescript-editor-analysis = vscode-extensions.chenglou92.rescript-vscode.rescript-editor-analysis;
-  };
-
   rnginline = with python3Packages; toPythonApplication rnginline;
 
   rr = callPackage ../development/tools/analysis/rr { };
@@ -6482,6 +6468,7 @@ with pkgs;
     boost187
     boost188
     boost189
+    boost190
     ;
 
   boost = boost187;
@@ -7990,10 +7977,6 @@ with pkgs;
     gtkVersion = "4";
   };
 
-  vtfedit = callPackage ../by-name/vt/vtfedit/package.nix {
-    wine = wineWowPackages.staging;
-  };
-
   inherit (callPackage ../development/libraries/vtk { }) vtk_9_5;
 
   vtk = vtk_9_5;
@@ -8559,12 +8542,6 @@ with pkgs;
 
   inherit
     ({
-      kanidm_1_5 = callPackage ../servers/kanidm/1_5.nix {
-        kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_5;
-      };
-      kanidm_1_6 = callPackage ../servers/kanidm/1_6.nix {
-        kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_6;
-      };
       kanidm_1_7 = callPackage ../servers/kanidm/1_7.nix {
         kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_7;
       };
@@ -8572,17 +8549,11 @@ with pkgs;
         kanidmWithSecretProvisioning = kanidmWithSecretProvisioning_1_8;
       };
 
-      kanidmWithSecretProvisioning_1_5 = kanidm_1_5.override { enableSecretProvisioning = true; };
-      kanidmWithSecretProvisioning_1_6 = kanidm_1_6.override { enableSecretProvisioning = true; };
       kanidmWithSecretProvisioning_1_7 = kanidm_1_7.override { enableSecretProvisioning = true; };
       kanidmWithSecretProvisioning_1_8 = kanidm_1_8.override { enableSecretProvisioning = true; };
     })
-    kanidm_1_5
-    kanidm_1_6
     kanidm_1_7
     kanidm_1_8
-    kanidmWithSecretProvisioning_1_5
-    kanidmWithSecretProvisioning_1_6
     kanidmWithSecretProvisioning_1_7
     kanidmWithSecretProvisioning_1_8
     ;
@@ -12041,9 +12012,7 @@ with pkgs;
 
   pmars-x11 = pmars.override { enableXwinGraphics = true; };
 
-  vanillatd = callPackage ../by-name/va/vanillatd/package.nix { appName = "vanillatd"; };
-
-  vanillara = callPackage ../by-name/va/vanillatd/package.nix { appName = "vanillara"; };
+  vanillara = vanillatd.override { appName = "vanillara"; };
 
   anki-utils = callPackage ../by-name/an/anki/addons/anki-utils.nix { };
   ankiAddons = recurseIntoAttrs (callPackage ../by-name/an/anki/addons { });
