@@ -1,10 +1,10 @@
 {
-  version = "874";
+  version = "914";
   x86_64-linux = {
     os = "Linux";
     name = "x86_64";
     ext = "tgz";
-    hash = "sha256-7Ny7G0DXhYTf6MYLmEUT7meYPNMrGLPDdvrVuYyETWA=";
+    hash = "sha256-S7dEUho3OMbqg6jDNRB+M8KbRRk9xzPqsu33WocF3Xc=";
   };
   i686-linux = {
     os = "Linux";
