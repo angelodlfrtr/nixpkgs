@@ -304,6 +304,7 @@
   ./programs/oddjobd.nix
   ./programs/opengamepadui.nix
   ./programs/openvpn3.nix
+  ./programs/outlinevpn-client.nix
   ./programs/partition-manager.nix
   ./programs/passless.nix
   ./programs/pay-respects.nix
